@@ -52,6 +52,23 @@ export default function App() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-12 relative">
+          {/* Guide Button */}
+          <div className="absolute top-0 left-4 md:left-8">
+            <Button
+              onClick={() => setShowGuide(true)}
+              variant="outline"
+              size="sm"
+              className={`flex items-center gap-2 backdrop-blur-md border transition-all duration-300 ${
+                isDarkMode
+                  ? 'border-white/30 hover:bg-white/10'
+                  : 'border-slate-300 hover:bg-slate-100'
+              }`}
+            >
+              <HelpCircle className="w-4 h-4" />
+              <span className="hidden sm:inline">Guide</span>
+            </Button>
+          </div>
+
           {/* Theme Toggle Button */}
           <div className="absolute top-0 right-4 md:right-8">
             <Button
