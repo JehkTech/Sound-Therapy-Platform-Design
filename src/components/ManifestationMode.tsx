@@ -402,19 +402,19 @@ export function ManifestationMode() {
         </CardContent>
       </Card>
 
-      <style jsx>{`
+      <style>{`
         @keyframes manifestationPulse {
-          0%, 100% { 
-            transform: scale(1); 
-            opacity: 1; 
+          0%, 100% {
+            transform: scale(1);
+            opacity: 1;
           }
-          33% { 
-            transform: scale(1.05); 
-            opacity: 0.9; 
+          33% {
+            transform: scale(1.05);
+            opacity: 0.9;
           }
-          66% { 
-            transform: scale(0.95); 
-            opacity: 0.8; 
+          66% {
+            transform: scale(0.95);
+            opacity: 0.8;
           }
         }
       `}</style>
