@@ -366,21 +366,6 @@ export function ManifestationMode() {
                 </button>
               </div>
 
-              <div className="mt-4 flex justify-center">
-                <Button
-                  onClick={() => setIsSlideShowPlaying(!isSlideShowPlaying)}
-                  size="sm"
-                  variant="outline"
-                  className="flex items-center gap-2"
-                  style={{
-                    borderColor: selectedProgram.color,
-                    color: selectedProgram.color
-                  }}
-                >
-                  {isSlideShowPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                  {isSlideShowPlaying ? 'Pause' : 'Play'} Slideshow
-                </Button>
-              </div>
             </div>
           </div>
 
