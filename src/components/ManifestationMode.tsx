@@ -239,6 +239,9 @@ export function ManifestationMode() {
     if (isPlaying) {
       stopSession();
     }
+    if (isSlideShowPlaying) {
+      setIsSlideShowPlaying(false);
+    }
   };
 
   const formatTime = (seconds: number) => {
