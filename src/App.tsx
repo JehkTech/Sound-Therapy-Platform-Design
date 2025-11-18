@@ -13,9 +13,9 @@ import { Waves, Target, Wind, User, Sparkles, Palette, Sun, Moon } from 'lucide-
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
-  // Initialize dark mode on component mount
+  // Initialize light mode on component mount
   useEffect(() => {
-    document.documentElement.classList.add('dark');
+    document.documentElement.classList.remove('dark');
   }, []);
 
   const toggleTheme = () => {
