@@ -100,7 +100,7 @@ export default function App() {
             }`}>
               <TabsTrigger value="frequency" className={`flex flex-col items-center justify-center gap-1 px-3 py-2 h-full rounded-lg transition-all duration-300 ${
                 isDarkMode
-                  ? 'data-[state=active]:bg-blue-500 data-[state=active]:text-white data-[state=active]:border data-[state=active]:border-blue-300 data-[state=active]:shadow-lg'
+                  ? 'data-[state=active]:bg-gray-400 data-[state=active]:text-white data-[state=active]:border data-[state=active]:border-gray-300 data-[state=active]:shadow-lg'
                   : 'data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg'
               }`}>
                 <Waves className="w-4 h-4 flex-shrink-0" />
@@ -108,7 +108,7 @@ export default function App() {
               </TabsTrigger>
               <TabsTrigger value="chakra" className={`flex flex-col items-center justify-center gap-1 px-3 py-2 h-full rounded-lg transition-all duration-300 ${
                 isDarkMode
-                  ? 'data-[state=active]:bg-blue-500 data-[state=active]:text-white data-[state=active]:border data-[state=active]:border-blue-300 data-[state=active]:shadow-lg'
+                  ? 'data-[state=active]:bg-gray-400 data-[state=active]:text-white data-[state=active]:border data-[state=active]:border-gray-300 data-[state=active]:shadow-lg'
                   : 'data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg'
               }`}>
                 <Palette className="w-4 h-4 flex-shrink-0" />
@@ -116,7 +116,7 @@ export default function App() {
               </TabsTrigger>
               <TabsTrigger value="manifestation" className={`flex flex-col items-center justify-center gap-1 px-3 py-2 h-full rounded-lg transition-all duration-300 ${
                 isDarkMode
-                  ? 'data-[state=active]:bg-blue-500 data-[state=active]:text-white data-[state=active]:border data-[state=active]:border-blue-300 data-[state=active]:shadow-lg'
+                  ? 'data-[state=active]:bg-gray-400 data-[state=active]:text-white data-[state=active]:border data-[state=active]:border-gray-300 data-[state=active]:shadow-lg'
                   : 'data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg'
               }`}>
                 <Target className="w-4 h-4 flex-shrink-0" />
@@ -124,7 +124,7 @@ export default function App() {
               </TabsTrigger>
               <TabsTrigger value="breathing" className={`flex flex-col items-center justify-center gap-1 px-3 py-2 h-full rounded-lg transition-all duration-300 ${
                 isDarkMode
-                  ? 'data-[state=active]:bg-blue-500 data-[state=active]:text-white data-[state=active]:border data-[state=active]:border-blue-300 data-[state=active]:shadow-lg'
+                  ? 'data-[state=active]:bg-gray-400 data-[state=active]:text-white data-[state=active]:border data-[state=active]:border-gray-300 data-[state=active]:shadow-lg'
                   : 'data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg'
               }`}>
                 <Wind className="w-4 h-4 flex-shrink-0" />
@@ -132,7 +132,7 @@ export default function App() {
               </TabsTrigger>
               <TabsTrigger value="profile" className={`flex flex-col items-center justify-center gap-1 px-3 py-2 h-full rounded-lg transition-all duration-300 ${
                 isDarkMode
-                  ? 'data-[state=active]:bg-blue-500 data-[state=active]:text-white data-[state=active]:border data-[state=active]:border-blue-300 data-[state=active]:shadow-lg'
+                  ? 'data-[state=active]:bg-gray-400 data-[state=active]:text-white data-[state=active]:border data-[state=active]:border-gray-300 data-[state=active]:shadow-lg'
                   : 'data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg'
               }`}>
                 <User className="w-4 h-4 flex-shrink-0" />
@@ -140,7 +140,7 @@ export default function App() {
               </TabsTrigger>
               <TabsTrigger value="vortex" className={`flex flex-col items-center justify-center gap-1 px-3 py-2 h-full rounded-lg transition-all duration-300 ${
                 isDarkMode
-                  ? 'data-[state=active]:bg-blue-500 data-[state=active]:text-white data-[state=active]:border data-[state=active]:border-blue-300 data-[state=active]:shadow-lg'
+                  ? 'data-[state=active]:bg-gray-400 data-[state=active]:text-white data-[state=active]:border data-[state=active]:border-gray-300 data-[state=active]:shadow-lg'
                   : 'data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg'
               }`}>
                 <Sparkles className="w-4 h-4 flex-shrink-0" />
