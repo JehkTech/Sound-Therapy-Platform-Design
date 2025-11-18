@@ -135,6 +135,8 @@ const ZODIAC_SIGNS = [
 ];
 
 export function Profile() {
+  const [currentDate] = useState(new Date());
+
   const [profile, setProfile] = useState({
     name: 'Luna Star',
     username: '@lunastar',
@@ -171,7 +173,7 @@ export function Profile() {
     if (!date) return null;
     const month = date.getMonth() + 1;
     const day = date.getDate();
-    
+
     // Zodiac date ranges
     if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) return 'Aries';
     if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) return 'Taurus';
@@ -187,6 +189,43 @@ export function Profile() {
     if ((month === 2 && day >= 19) || (month === 3 && day <= 20)) return 'Pisces';
     return null;
   };
+
+  const generateCalendarDays = () => {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+
+    // Get first day of month (0 = Sunday, 1 = Monday, etc.)
+    const firstDay = new Date(year, month, 1).getDay();
+
+    // Get number of days in month
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    // Get days from previous month to fill the grid
+    const daysInPrevMonth = new Date(year, month, 0).getDate();
+    const daysFromPrevMonth = [];
+    for (let i = firstDay - 1; i >= 0; i--) {
+      daysFromPrevMonth.unshift(daysInPrevMonth - i);
+    }
+
+    // Current month days
+    const currentMonthDays = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+    // Days from next month to fill the grid
+    const totalCells = daysFromPrevMonth.length + currentMonthDays.length;
+    const daysFromNextMonth = totalCells % 7 === 0
+      ? []
+      : Array.from({ length: 7 - (totalCells % 7) }, (_, i) => i + 1);
+
+    return {
+      prevMonthDays: daysFromPrevMonth,
+      currentMonthDays,
+      nextMonthDays: daysFromNextMonth,
+      currentDay: currentDate.getDate(),
+    };
+  };
+
+  const calendarData = generateCalendarDays();
+  const monthName = currentDate.toLocaleDateString('en-US', { month: 'long' });
 
   const handleDateChange = (date) => {
     const sunSign = getZodiacSignByDate(date);
@@ -265,13 +304,13 @@ export function Profile() {
             {/* Activity Calendar Widget */}
             <div className="p-4 rounded-lg bg-white/5">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-medium">September 2025</h3>
+                <h3 className="text-lg font-medium">{monthName} {currentDate.getFullYear()}</h3>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <div className="w-3 h-3 bg-blue-400/30 rounded-full"></div>
                   <span>Session day</span>
                 </div>
               </div>
-              
+
               <div className="grid grid-cols-7 gap-1 text-center text-sm">
                 {/* Days of week header */}
                 <div className="text-xs text-muted-foreground font-medium p-2">Su</div>
@@ -282,46 +321,36 @@ export function Profile() {
                 <div className="text-xs text-muted-foreground font-medium p-2">Fr</div>
                 <div className="text-xs text-muted-foreground font-medium p-2">Sa</div>
 
-                {/* Calendar days */}
-                <div className="p-2 text-muted-foreground">31</div>
-                <div className="p-2 rounded bg-blue-400/20 text-blue-400 font-medium">1</div>
-                <div className="p-2">2</div>
-                <div className="p-2 rounded bg-blue-400/20 text-blue-400 font-medium">3</div>
-                <div className="p-2">4</div>
-                <div className="p-2 rounded bg-blue-400/20 text-blue-400 font-medium">5</div>
-                <div className="p-2">6</div>
-                
-                <div className="p-2">7</div>
-                <div className="p-2">8</div>
-                <div className="p-2 rounded bg-blue-400/20 text-blue-400 font-medium">9</div>
-                <div className="p-2">10</div>
-                <div className="p-2">11</div>
-                <div className="p-2 rounded bg-blue-400/20 text-blue-400 font-medium">12</div>
-                <div className="p-2">13</div>
-                
-                <div className="p-2">14</div>
-                <div className="p-2 rounded bg-blue-400/20 text-blue-400 font-medium">15</div>
-                <div className="p-2 rounded bg-blue-400/30 text-blue-300 font-bold border border-blue-400">16</div>
-                <div className="p-2">17</div>
-                <div className="p-2">18</div>
-                <div className="p-2">19</div>
-                <div className="p-2">20</div>
-                
-                <div className="p-2">21</div>
-                <div className="p-2">22</div>
-                <div className="p-2">23</div>
-                <div className="p-2">24</div>
-                <div className="p-2">25</div>
-                <div className="p-2">26</div>
-                <div className="p-2">27</div>
-                
-                <div className="p-2">28</div>
-                <div className="p-2">29</div>
-                <div className="p-2">30</div>
-                <div className="p-2 text-muted-foreground">1</div>
-                <div className="p-2 text-muted-foreground">2</div>
-                <div className="p-2 text-muted-foreground">3</div>
-                <div className="p-2 text-muted-foreground">4</div>
+                {/* Previous month days */}
+                {calendarData.prevMonthDays.map((day, idx) => (
+                  <div key={`prev-${idx}`} className="p-2 text-muted-foreground">{day}</div>
+                ))}
+
+                {/* Current month days */}
+                {calendarData.currentMonthDays.map((day) => {
+                  const isToday = day === calendarData.currentDay;
+                  const isSessionDay = [1, 3, 5, 9, 12, 15].includes(day); // Example session days
+
+                  return (
+                    <div
+                      key={`current-${day}`}
+                      className={`p-2 rounded transition-all duration-200 ${
+                        isToday
+                          ? 'bg-blue-400/30 text-blue-300 font-bold border border-blue-400'
+                          : isSessionDay
+                          ? 'bg-blue-400/20 text-blue-400 font-medium'
+                          : ''
+                      }`}
+                    >
+                      {day}
+                    </div>
+                  );
+                })}
+
+                {/* Next month days */}
+                {calendarData.nextMonthDays.map((day, idx) => (
+                  <div key={`next-${idx}`} className="p-2 text-muted-foreground">{day}</div>
+                ))}
               </div>
             </div>
           </div>

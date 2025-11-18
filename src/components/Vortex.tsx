@@ -224,67 +224,70 @@ export function Vortex() {
           </DialogTrigger>
           <DialogContent className="max-w-2xl">
             <DialogHeader>
-              <DialogTitle>Create New Belief</DialogTitle>
+              <DialogTitle className="text-2xl">Create New Belief</DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
               <div className="space-y-2">
-                <label>Belief Title</label>
+                <label className="font-semibold">Belief Title</label>
                 <Input
                   placeholder="I am... / I attract... / I deserve..."
                   value={newBelief.title}
                   onChange={(e) => setNewBelief(prev => ({ ...prev, title: e.target.value }))}
+                  className="bg-white border-gray-300 text-black placeholder:text-gray-500"
                 />
               </div>
-              
+
               <div className="space-y-2">
-                <label>Description (Optional)</label>
+                <label className="font-semibold">Description (Optional)</label>
                 <Textarea
                   placeholder="Expand on your belief..."
                   value={newBelief.description}
                   onChange={(e) => setNewBelief(prev => ({ ...prev, description: e.target.value }))}
+                  className="bg-white border-gray-300 text-black placeholder:text-gray-500"
                 />
               </div>
-              
+
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label>Category</label>
+                  <label className="font-semibold">Category</label>
                   <Select value={newBelief.category} onValueChange={(value) => setNewBelief(prev => ({ ...prev, category: value }))}>
-                    <SelectTrigger>
+                    <SelectTrigger className="!bg-white !border-gray-300 text-black">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="!bg-white !border-gray-300 !text-black">
                       {BELIEF_CATEGORIES.map(cat => (
-                        <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
+                        <SelectItem key={cat.id} value={cat.id} className="!bg-white !text-black">{cat.name}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 </div>
-                
+
                 <div className="space-y-2">
-                  <label>Linked Frequency</label>
+                  <label className="font-semibold">Linked Frequency</label>
                   <Select value={newBelief.frequency.toString()} onValueChange={(value) => setNewBelief(prev => ({ ...prev, frequency: Number(value) }))}>
-                    <SelectTrigger>
+                    <SelectTrigger className="!bg-white !border-gray-300 text-black">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="!bg-white !border-gray-300 !text-black">
                       {FREQUENCY_OPTIONS.map(freq => (
-                        <SelectItem key={freq.value} value={freq.value.toString()}>{freq.label}</SelectItem>
+                        <SelectItem key={freq.value} value={freq.value.toString()} className="!bg-white !text-black">{freq.label}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 </div>
               </div>
-              
+
               <div className="space-y-2">
-                <label>Tags (comma separated)</label>
+                <label className="font-semibold">Tags (comma separated)</label>
                 <Input
                   placeholder="manifestation, healing, confidence"
                   value={newBelief.tags}
                   onChange={(e) => setNewBelief(prev => ({ ...prev, tags: e.target.value }))}
+                  className="bg-white border-gray-300 text-black placeholder:text-gray-500"
                 />
               </div>
-              
-              <div className="flex justify-end gap-2">
+
+              <div className="flex justify-end gap-2 pt-4">
                 <Button variant="outline" onClick={() => setIsAddingBelief(false)}>
                   Cancel
                 </Button>
@@ -409,7 +412,7 @@ export function Vortex() {
         </Card>
       )}
 
-      <style jsx>{`
+      <style>{`
         @keyframes beliefGlow {
           0% { opacity: 0.1; }
           100% { opacity: 0.3; }

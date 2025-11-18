@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import { Play, Pause, Heart, DollarSign, Brain, Zap, Sparkles, Moon } from 'lucide-react';
+import { Play, Pause, Heart, DollarSign, Brain, Zap, Sparkles, Moon, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const MANIFESTATION_PROGRAMS = [
   {
@@ -103,7 +103,8 @@ export function ManifestationMode() {
   const [currentAffirmation, setCurrentAffirmation] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [progress, setProgress] = useState(0);
-  
+  const [isSlideShowPlaying] = useState(true);
+
   const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
   const [oscillator, setOscillator] = useState<OscillatorNode | null>(null);
   const [gainNode, setGainNode] = useState<GainNode | null>(null);
@@ -125,14 +126,14 @@ export function ManifestationMode() {
   useEffect(() => {
     let interval: NodeJS.Timeout;
     let affirmationInterval: NodeJS.Timeout;
-    
+
     if (isPlaying && timeRemaining > 0) {
       interval = setInterval(() => {
         setTimeRemaining(prev => {
           const newTime = prev - 1;
           const totalDuration = selectedProgram.duration * 60;
           setProgress(((totalDuration - newTime) / totalDuration) * 100);
-          
+
           if (newTime <= 0) {
             stopSession();
             return 0;
@@ -143,17 +144,34 @@ export function ManifestationMode() {
 
       // Cycle through affirmations every 30 seconds
       affirmationInterval = setInterval(() => {
-        setCurrentAffirmation(prev => 
+        setCurrentAffirmation(prev =>
           (prev + 1) % selectedProgram.affirmations.length
         );
       }, 30000);
     }
-    
+
     return () => {
       clearInterval(interval);
       clearInterval(affirmationInterval);
     };
   }, [isPlaying, timeRemaining, selectedProgram]);
+
+  // Slideshow auto-cycling
+  useEffect(() => {
+    let slideShowInterval: NodeJS.Timeout;
+
+    if (isSlideShowPlaying) {
+      slideShowInterval = setInterval(() => {
+        setCurrentAffirmation(prev =>
+          (prev + 1) % selectedProgram.affirmations.length
+        );
+      }, 4000);
+    }
+
+    return () => {
+      clearInterval(slideShowInterval);
+    };
+  }, [isSlideShowPlaying, selectedProgram]);
 
   const startManifestationSound = async () => {
     if (!audioContext) return;
@@ -300,28 +318,51 @@ export function ManifestationMode() {
         </CardHeader>
 
         <CardContent className="space-y-6">
-          {/* Current Affirmation */}
+          {/* Current Affirmation - Slideshow Card */}
           <div className="text-center">
-            <div 
+            <div
               className="p-6 rounded-xl bg-white/10 backdrop-blur-sm"
               style={{ borderLeft: `4px solid ${selectedProgram.color}` }}
             >
               <p className="text-lg italic" style={{ color: selectedProgram.color }}>
                 "{selectedProgram.affirmations[currentAffirmation]}"
               </p>
-              <div className="mt-3 flex justify-center space-x-1">
-                {selectedProgram.affirmations.map((_, index) => (
-                  <div
-                    key={index}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      index === currentAffirmation 
-                        ? 'opacity-100 scale-125' 
-                        : 'opacity-40'
-                    }`}
-                    style={{ background: selectedProgram.color }}
-                  />
-                ))}
+              <div className="mt-4 flex justify-center items-center gap-4">
+                <button
+                  onClick={() => setCurrentAffirmation(prev =>
+                    (prev - 1 + selectedProgram.affirmations.length) % selectedProgram.affirmations.length
+                  )}
+                  className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                  aria-label="Previous affirmation"
+                >
+                  <ChevronLeft className="w-5 h-5" style={{ color: selectedProgram.color }} />
+                </button>
+
+                <div className="flex space-x-1">
+                  {selectedProgram.affirmations.map((_, index) => (
+                    <div
+                      key={index}
+                      className={`h-2 rounded-full transition-all duration-300 ${
+                        index === currentAffirmation
+                          ? 'opacity-100 scale-125 w-3'
+                          : 'opacity-40 w-2'
+                      }`}
+                      style={{ background: selectedProgram.color }}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => setCurrentAffirmation(prev =>
+                    (prev + 1) % selectedProgram.affirmations.length
+                  )}
+                  className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                  aria-label="Next affirmation"
+                >
+                  <ChevronRight className="w-5 h-5" style={{ color: selectedProgram.color }} />
+                </button>
               </div>
+
             </div>
           </div>
 
@@ -361,19 +402,19 @@ export function ManifestationMode() {
         </CardContent>
       </Card>
 
-      <style jsx>{`
+      <style>{`
         @keyframes manifestationPulse {
-          0%, 100% { 
-            transform: scale(1); 
-            opacity: 1; 
+          0%, 100% {
+            transform: scale(1);
+            opacity: 1;
           }
-          33% { 
-            transform: scale(1.05); 
-            opacity: 0.9; 
+          33% {
+            transform: scale(1.05);
+            opacity: 0.9;
           }
-          66% { 
-            transform: scale(0.95); 
-            opacity: 0.8; 
+          66% {
+            transform: scale(0.95);
+            opacity: 0.8;
           }
         }
       `}</style>
