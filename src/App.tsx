@@ -13,6 +13,7 @@ import { Waves, Target, Wind, User, Sparkles, Palette, Sun, Moon, HelpCircle } f
 
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [showGuide, setShowGuide] = useState(false);
 
   // Initialize light mode on component mount
   useEffect(() => {
