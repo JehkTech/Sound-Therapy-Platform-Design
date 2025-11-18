@@ -173,7 +173,7 @@ export function Profile() {
     if (!date) return null;
     const month = date.getMonth() + 1;
     const day = date.getDate();
-    
+
     // Zodiac date ranges
     if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) return 'Aries';
     if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) return 'Taurus';
@@ -189,6 +189,43 @@ export function Profile() {
     if ((month === 2 && day >= 19) || (month === 3 && day <= 20)) return 'Pisces';
     return null;
   };
+
+  const generateCalendarDays = () => {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+
+    // Get first day of month (0 = Sunday, 1 = Monday, etc.)
+    const firstDay = new Date(year, month, 1).getDay();
+
+    // Get number of days in month
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    // Get days from previous month to fill the grid
+    const daysInPrevMonth = new Date(year, month, 0).getDate();
+    const daysFromPrevMonth = [];
+    for (let i = firstDay - 1; i >= 0; i--) {
+      daysFromPrevMonth.unshift(daysInPrevMonth - i);
+    }
+
+    // Current month days
+    const currentMonthDays = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+    // Days from next month to fill the grid
+    const totalCells = daysFromPrevMonth.length + currentMonthDays.length;
+    const daysFromNextMonth = totalCells % 7 === 0
+      ? []
+      : Array.from({ length: 7 - (totalCells % 7) }, (_, i) => i + 1);
+
+    return {
+      prevMonthDays: daysFromPrevMonth,
+      currentMonthDays,
+      nextMonthDays: daysFromNextMonth,
+      currentDay: currentDate.getDate(),
+    };
+  };
+
+  const calendarData = generateCalendarDays();
+  const monthName = currentDate.toLocaleDateString('en-US', { month: 'long' });
 
   const handleDateChange = (date) => {
     const sunSign = getZodiacSignByDate(date);
