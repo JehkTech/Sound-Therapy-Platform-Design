@@ -222,73 +222,76 @@ export function Vortex() {
               Add New Belief
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-2xl">
+          <DialogContent className="max-w-2xl bg-gradient-to-br from-slate-900 to-slate-800 border-white/20">
             <DialogHeader>
-              <DialogTitle>Create New Belief</DialogTitle>
+              <DialogTitle className="text-2xl bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Create New Belief</DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
               <div className="space-y-2">
-                <label>Belief Title</label>
+                <label className="text-white font-semibold">Belief Title</label>
                 <Input
                   placeholder="I am... / I attract... / I deserve..."
                   value={newBelief.title}
                   onChange={(e) => setNewBelief(prev => ({ ...prev, title: e.target.value }))}
+                  className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
                 />
               </div>
-              
+
               <div className="space-y-2">
-                <label>Description (Optional)</label>
+                <label className="text-white font-semibold">Description (Optional)</label>
                 <Textarea
                   placeholder="Expand on your belief..."
                   value={newBelief.description}
                   onChange={(e) => setNewBelief(prev => ({ ...prev, description: e.target.value }))}
+                  className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
                 />
               </div>
-              
+
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label>Category</label>
+                  <label className="text-white font-semibold">Category</label>
                   <Select value={newBelief.category} onValueChange={(value) => setNewBelief(prev => ({ ...prev, category: value }))}>
-                    <SelectTrigger>
+                    <SelectTrigger className="bg-white/10 border-white/20 text-white">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-slate-800 border-white/20">
                       {BELIEF_CATEGORIES.map(cat => (
-                        <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
+                        <SelectItem key={cat.id} value={cat.id} className="text-white">{cat.name}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 </div>
-                
+
                 <div className="space-y-2">
-                  <label>Linked Frequency</label>
+                  <label className="text-white font-semibold">Linked Frequency</label>
                   <Select value={newBelief.frequency.toString()} onValueChange={(value) => setNewBelief(prev => ({ ...prev, frequency: Number(value) }))}>
-                    <SelectTrigger>
+                    <SelectTrigger className="bg-white/10 border-white/20 text-white">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-slate-800 border-white/20">
                       {FREQUENCY_OPTIONS.map(freq => (
-                        <SelectItem key={freq.value} value={freq.value.toString()}>{freq.label}</SelectItem>
+                        <SelectItem key={freq.value} value={freq.value.toString()} className="text-white">{freq.label}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 </div>
               </div>
-              
+
               <div className="space-y-2">
-                <label>Tags (comma separated)</label>
+                <label className="text-white font-semibold">Tags (comma separated)</label>
                 <Input
                   placeholder="manifestation, healing, confidence"
                   value={newBelief.tags}
                   onChange={(e) => setNewBelief(prev => ({ ...prev, tags: e.target.value }))}
+                  className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
                 />
               </div>
-              
-              <div className="flex justify-end gap-2">
-                <Button variant="outline" onClick={() => setIsAddingBelief(false)}>
+
+              <div className="flex justify-end gap-2 pt-4">
+                <Button variant="outline" onClick={() => setIsAddingBelief(false)} className="border-white/30 text-white hover:bg-white/10">
                   Cancel
                 </Button>
-                <Button onClick={addBelief}>
+                <Button onClick={addBelief} className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white">
                   Create Belief
                 </Button>
               </div>
