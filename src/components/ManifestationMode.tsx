@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import { Heart, DollarSign, Brain, Zap, Sparkles, Moon, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Play, Pause, Heart, DollarSign, Brain, Zap, Sparkles, Moon, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const MANIFESTATION_PROGRAMS = [
   {
