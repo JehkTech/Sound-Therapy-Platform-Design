@@ -135,6 +135,8 @@ const ZODIAC_SIGNS = [
 ];
 
 export function Profile() {
+  const [currentDate] = useState(new Date());
+
   const [profile, setProfile] = useState({
     name: 'Luna Star',
     username: '@lunastar',
