@@ -221,6 +221,87 @@ export default function App() {
             }`}></div>
           </div>
         </footer>
+
+        {/* Guide Dialog */}
+        <Dialog open={showGuide} onOpenChange={setShowGuide}>
+          <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle className="text-2xl flex items-center gap-2">
+                <HelpCircle className="w-6 h-6" />
+                Sound Therapy Guide
+              </DialogTitle>
+            </DialogHeader>
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold mb-2">Welcome to Sound Therapy</h3>
+                <p className="text-muted-foreground">
+                  A comprehensive platform for holistic healing through frequency-based sound therapy, chakra alignment, manifestation, and conscious breathing.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold flex items-center gap-2 mb-2">
+                    <Waves className="w-4 h-4" />
+                    Frequency Generator
+                  </h4>
+                  <p className="text-sm text-muted-foreground">Generate healing tones and binaural beats. Choose between single tones or binaural beats, select your desired frequency (174 Hz for pain relief up to 963 Hz for divine connection), adjust volume, and set session duration. Perfect for daily healing sessions.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold flex items-center gap-2 mb-2">
+                    <Palette className="w-4 h-4" />
+                    Chakra Alignment
+                  </h4>
+                  <p className="text-sm text-muted-foreground">Balance your seven chakras with targeted frequencies and visualizations. Each chakra represents different aspects of your being from root security to crown consciousness. Align them for optimal spiritual and physical wellness.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold flex items-center gap-2 mb-2">
+                    <Target className="w-4 h-4" />
+                    Manifestation
+                  </h4>
+                  <p className="text-sm text-muted-foreground">Program powerful affirmations with corresponding frequencies to manifest your desires. Choose from six categories: Love & Relationships, Abundance & Prosperity, Health & Vitality, Mental Clarity, Self-Worth, and Life Purpose. Each comes with specific frequencies to amplify your intentions.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold flex items-center gap-2 mb-2">
+                    <Wind className="w-4 h-4" />
+                    Breathing Timer
+                  </h4>
+                  <p className="text-sm text-muted-foreground">Master conscious breathing techniques with guided patterns. Choose from multiple breathing patterns, set your cycle count, add background frequencies, and follow the visual breathing guide for optimal results.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold flex items-center gap-2 mb-2">
+                    <User className="w-4 h-4" />
+                    Profile
+                  </h4>
+                  <p className="text-sm text-muted-foreground">Track your personal healing journey with practice statistics, favorite frequencies, and session history. Monitor your progress and maintain consistency in your sound therapy practice.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold flex items-center gap-2 mb-2">
+                    <Sparkles className="w-4 h-4" />
+                    My Vortex
+                  </h4>
+                  <p className="text-sm text-muted-foreground">Create your personal belief matrix for manifestation and alignment. Organize beliefs by category (Spiritual, Financial, Social, Mental, Physical, Emotional, Creative, Universal), link them to specific frequencies, and track your visits to reinforce your affirmations.</p>
+                </div>
+              </div>
+
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                <p className="text-sm font-semibold mb-2">💡 Pro Tips:</p>
+                <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
+                  <li>Use headphones for optimal binaural beat effects</li>
+                  <li>Practice consistently for best results</li>
+                  <li>Start with 15-minute sessions and increase duration gradually</li>
+                  <li>Combine chakra alignment with frequency generation for enhanced benefits</li>
+                  <li>Use affirmations in your Vortex daily to reinforce manifestation</li>
+                </ul>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
