@@ -251,12 +251,12 @@ export function Vortex() {
                 <div className="space-y-2">
                   <label className="font-semibold">Category</label>
                   <Select value={newBelief.category} onValueChange={(value) => setNewBelief(prev => ({ ...prev, category: value }))}>
-                    <SelectTrigger className="bg-white border-gray-300 text-black">
+                    <SelectTrigger className="!bg-white !border-gray-300 text-black">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-gray-300">
+                    <SelectContent className="!bg-white !border-gray-300 !text-black">
                       {BELIEF_CATEGORIES.map(cat => (
-                        <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
+                        <SelectItem key={cat.id} value={cat.id} className="!bg-white !text-black">{cat.name}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -265,12 +265,12 @@ export function Vortex() {
                 <div className="space-y-2">
                   <label className="font-semibold">Linked Frequency</label>
                   <Select value={newBelief.frequency.toString()} onValueChange={(value) => setNewBelief(prev => ({ ...prev, frequency: Number(value) }))}>
-                    <SelectTrigger className="bg-white border-gray-300 text-black">
+                    <SelectTrigger className="!bg-white !border-gray-300 text-black">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-gray-300">
+                    <SelectContent className="!bg-white !border-gray-300 !text-black">
                       {FREQUENCY_OPTIONS.map(freq => (
-                        <SelectItem key={freq.value} value={freq.value.toString()}>{freq.label}</SelectItem>
+                        <SelectItem key={freq.value} value={freq.value.toString()} className="!bg-white !text-black">{freq.label}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
