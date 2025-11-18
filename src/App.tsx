@@ -11,7 +11,7 @@ import { Button } from './components/ui/button';
 import { Waves, Target, Wind, User, Sparkles, Palette, Sun, Moon } from 'lucide-react';
 
 export default function App() {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   // Initialize light mode on component mount
   useEffect(() => {
