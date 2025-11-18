@@ -103,7 +103,7 @@ export function ManifestationMode() {
   const [currentAffirmation, setCurrentAffirmation] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [isSlideShowPlaying, setIsSlideShowPlaying] = useState(false);
+  const [isSlideShowPlaying] = useState(true);
 
   const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
   const [oscillator, setOscillator] = useState<OscillatorNode | null>(null);
