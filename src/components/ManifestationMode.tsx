@@ -321,27 +321,65 @@ export function ManifestationMode() {
         </CardHeader>
 
         <CardContent className="space-y-6">
-          {/* Current Affirmation */}
+          {/* Current Affirmation - Slideshow Card */}
           <div className="text-center">
-            <div 
+            <div
               className="p-6 rounded-xl bg-white/10 backdrop-blur-sm"
               style={{ borderLeft: `4px solid ${selectedProgram.color}` }}
             >
               <p className="text-lg italic" style={{ color: selectedProgram.color }}>
                 "{selectedProgram.affirmations[currentAffirmation]}"
               </p>
-              <div className="mt-3 flex justify-center space-x-1">
-                {selectedProgram.affirmations.map((_, index) => (
-                  <div
-                    key={index}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      index === currentAffirmation 
-                        ? 'opacity-100 scale-125' 
-                        : 'opacity-40'
-                    }`}
-                    style={{ background: selectedProgram.color }}
-                  />
-                ))}
+              <div className="mt-4 flex justify-center items-center gap-4">
+                <button
+                  onClick={() => setCurrentAffirmation(prev =>
+                    (prev - 1 + selectedProgram.affirmations.length) % selectedProgram.affirmations.length
+                  )}
+                  className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                  aria-label="Previous affirmation"
+                >
+                  <ChevronLeft className="w-5 h-5" style={{ color: selectedProgram.color }} />
+                </button>
+
+                <div className="flex space-x-1">
+                  {selectedProgram.affirmations.map((_, index) => (
+                    <div
+                      key={index}
+                      className={`h-2 rounded-full transition-all duration-300 ${
+                        index === currentAffirmation
+                          ? 'opacity-100 scale-125 w-3'
+                          : 'opacity-40 w-2'
+                      }`}
+                      style={{ background: selectedProgram.color }}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => setCurrentAffirmation(prev =>
+                    (prev + 1) % selectedProgram.affirmations.length
+                  )}
+                  className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                  aria-label="Next affirmation"
+                >
+                  <ChevronRight className="w-5 h-5" style={{ color: selectedProgram.color }} />
+                </button>
+              </div>
+
+              <div className="mt-4 flex justify-center">
+                <Button
+                  onClick={() => setIsSlideShowPlaying(!isSlideShowPlaying)}
+                  size="sm"
+                  variant="outline"
+                  className="flex items-center gap-2"
+                  style={{
+                    borderColor: selectedProgram.color,
+                    color: selectedProgram.color
+                  }}
+                >
+                  {isSlideShowPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                  {isSlideShowPlaying ? 'Pause' : 'Play'} Slideshow
+                </Button>
               </div>
             </div>
           </div>
