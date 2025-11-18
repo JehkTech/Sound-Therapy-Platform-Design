@@ -126,14 +126,14 @@ export function ManifestationMode() {
   useEffect(() => {
     let interval: NodeJS.Timeout;
     let affirmationInterval: NodeJS.Timeout;
-    
+
     if (isPlaying && timeRemaining > 0) {
       interval = setInterval(() => {
         setTimeRemaining(prev => {
           const newTime = prev - 1;
           const totalDuration = selectedProgram.duration * 60;
           setProgress(((totalDuration - newTime) / totalDuration) * 100);
-          
+
           if (newTime <= 0) {
             stopSession();
             return 0;
@@ -144,17 +144,34 @@ export function ManifestationMode() {
 
       // Cycle through affirmations every 30 seconds
       affirmationInterval = setInterval(() => {
-        setCurrentAffirmation(prev => 
+        setCurrentAffirmation(prev =>
           (prev + 1) % selectedProgram.affirmations.length
         );
       }, 30000);
     }
-    
+
     return () => {
       clearInterval(interval);
       clearInterval(affirmationInterval);
     };
   }, [isPlaying, timeRemaining, selectedProgram]);
+
+  // Slideshow auto-cycling
+  useEffect(() => {
+    let slideShowInterval: NodeJS.Timeout;
+
+    if (isSlideShowPlaying) {
+      slideShowInterval = setInterval(() => {
+        setCurrentAffirmation(prev =>
+          (prev + 1) % selectedProgram.affirmations.length
+        );
+      }, 4000);
+    }
+
+    return () => {
+      clearInterval(slideShowInterval);
+    };
+  }, [isSlideShowPlaying, selectedProgram]);
 
   const startManifestationSound = async () => {
     if (!audioContext) return;
