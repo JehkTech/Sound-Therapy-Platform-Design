@@ -224,7 +224,7 @@ export default function App() {
 
         {/* Guide Dialog */}
         <Dialog open={showGuide} onOpenChange={setShowGuide}>
-          <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogContent className="max-w-2xl max-h-96 overflow-y-auto">
             <DialogHeader>
               <DialogTitle className="text-2xl flex items-center gap-2">
                 <HelpCircle className="w-6 h-6" />
