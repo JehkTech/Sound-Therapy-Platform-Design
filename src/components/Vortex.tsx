@@ -412,7 +412,7 @@ export function Vortex() {
         </Card>
       )}
 
-      <style jsx>{`
+      <style>{`
         @keyframes beliefGlow {
           0% { opacity: 0.1; }
           100% { opacity: 0.3; }
