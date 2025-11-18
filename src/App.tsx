@@ -8,7 +8,8 @@ import { Profile } from './components/Profile';
 import { Vortex } from './components/Vortex';
 import { Card, CardContent } from './components/ui/card';
 import { Button } from './components/ui/button';
-import { Waves, Target, Wind, User, Sparkles, Palette, Sun, Moon } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './components/ui/dialog';
+import { Waves, Target, Wind, User, Sparkles, Palette, Sun, Moon, HelpCircle } from 'lucide-react';
 
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
